@@ -7,11 +7,11 @@ from .base import *
 os_type = platform.system()
 
 if os_type == 'Windows':
-    print('进入 dev ')
+    print('進入 dev ')
     from .dev import *
 elif os_type == 'Linux':
-    print('进入 prod ')
+    print('進入 prod ')
     from .prod import *
 else:
-    print('进入 mac')
+    print('進入 mac')
     from .mac import *
