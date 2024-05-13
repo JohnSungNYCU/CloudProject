@@ -12,6 +12,16 @@ pip install -r dev_requirements.txt
 ```
 
 初始化系统
+- Preparation on Ubuntu 20.04
+```bash
+Setup mysql password must match backend/core/settings/prod.py file settings.
+sudo apt-get install npm python3-mysqldb mariadb-server-10.3
+sudo mysql -u root -p
+CREATE DATABASE one;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password;
+SET PASSWORD = PASSWORD('TY%pwd123');
+FLUSH PRIVILEGES;
+```
 - 生成管理員帳號 `admin 123456`
 ```bash
 python manage.py migrate
