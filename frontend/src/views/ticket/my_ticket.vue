@@ -47,7 +47,7 @@
           <span>{{row.state.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="當前狀態" prop="transition">
+      <el-table-column label="急件狀態" prop="transition">
         <template slot-scope="{ row }">
           <span>{{row.transition.attribute_type|AttributeTypeFilter}}</span>
         </template>
@@ -57,7 +57,7 @@
           <span>{{row.participant}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="創建時間" prop="create_time"></el-table-column>
+      <el-table-column label="截止日期" prop="create_time"></el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
           <el-button-group>

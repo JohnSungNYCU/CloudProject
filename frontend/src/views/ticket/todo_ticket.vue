@@ -25,17 +25,17 @@
           <span>{{ row.state.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="當前狀態" prop="transition">
+      <el-table-column label="急件狀態" prop="transition">
         <template slot-scope="{ row }">
           <span>{{ row.transition.attribute_type | AttributeTypeFilter }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="申請人" prop="create_user">
+      <!-- <el-table-column label="申請人" prop="create_user">
         <template slot-scope="{ row }">
           <span>{{ row.create_user.username }}</span>
         </template>
-      </el-table-column>
-      <el-table-column label="創建時間" prop="create_time"></el-table-column>
+      </el-table-column> -->
+      <el-table-column label="截止日期" prop="create_time"></el-table-column>
     </el-table>
   </div>
 </template>
