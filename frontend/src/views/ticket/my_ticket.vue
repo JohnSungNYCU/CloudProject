@@ -49,9 +49,13 @@
       </el-table-column>
       <el-table-column label="急件狀態" prop="transition">
         <template slot-scope="{ row }">
-          <span>{{row.transition.attribute_type|AttributeTypeFilter}}</span>
+            <span>
+            {{
+                JSON.parse(row.customfield).find(item => item.field_key === 'status').field_value | AttributeTypeFilter2
+            }}
+            </span>
         </template>
-      </el-table-column>
+    </el-table-column>
       <el-table-column label="當前處理人" prop="participant">
         <template slot-scope="{ row }">
           <span>{{row.participant}}</span>
@@ -86,6 +90,7 @@
 <script>
 import { ticket, auth } from "@/api/all";
 import Pagination from "@/components/Pagination";
+import { AttributeTypeFilter2 } from "@/filters";
 import {
   checkAuthAdd,
   checkAuthDel,
