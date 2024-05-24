@@ -78,7 +78,7 @@
         <template slot-scope="{ row }">
           <span>
           {{
-            JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.id === 7).field_value | AttributeTypeFilter2
+            JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2
           }}
           </span>
       </template>
@@ -89,7 +89,7 @@
         </template>
       </el-table-column>
       <el-table-column label="創建日期" prop="create_time"></el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         label="操作"
         align="center"
         class-name="small-padding fixed-width"
@@ -97,7 +97,7 @@
         <template slot-scope="{ row }">
           <el-button-group>
             <el-button
-              v-if="permissionList.del & (username === 'admin')"
+              v-if="permissionList.del && row.state.order_id < 3"
               size="small"
               type="danger"
               @click="handleDelete(row)"
@@ -105,7 +105,7 @@
             >
           </el-button-group>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <div class="table-pagination">
       <pagination

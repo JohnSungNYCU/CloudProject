@@ -51,7 +51,7 @@
         <template slot-scope="{ row }">
             <span>
             {{
-              JSON.parse(row.customfield).find(item => item.field_key === 'status').field_value | AttributeTypeFilter2
+              JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2
             }}
             </span>
         </template>
@@ -66,7 +66,7 @@
         <template slot-scope="{ row }">
           <el-button-group>
             <el-button
-              v-if="permissionList.del && row.state.order_id < 3"
+              v-if="true"
               size="small"
               type="danger"
               @click="handleDelete(row)"
