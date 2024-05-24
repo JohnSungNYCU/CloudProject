@@ -171,7 +171,7 @@ class Command(BaseCommand):
         s4.role_participant.add(role_fab_tl)
         s5 = State.objects.create(name="測試-執行中", order_id=4, participant_type='role', workflow=fab_wf)
         s5.fields.add(c6)
-        s5.group_participant.add(group_fab)
+        s5.role_participant.add(role_lab)
         s6 = State.objects.create(name="結束", order_id=98, state_type=2, participant_type='none', workflow=fab_wf)
 
         # 建立工作流步骤
