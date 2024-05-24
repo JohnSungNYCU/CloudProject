@@ -69,6 +69,7 @@ class Command(BaseCommand):
         CustomField.objects.create(field_name="工號", order_id=4, field_attribute=True, field_type=2, field_key="id",
                                    workflow=lab_wf)
         # 建立扩展字段
+        c0 = CustomField.objects.create(field_name="急件狀態", order_id=9, field_type=9, field_key="status", field_choice='{"1":"一般"}', workflow=lab_wf)
         c1 = CustomField.objects.create(field_name="截止時間", order_id=10, field_type=6, field_key="start_time",
                                         workflow=lab_wf)
         c2 = CustomField.objects.create(field_name="檢測項目", order_id=30, field_type=9, field_key="type",
@@ -87,7 +88,7 @@ class Command(BaseCommand):
                                   workflow=lab_wf)
         # 建立流转状态
         s3 = State.objects.create(name="申請人-編輯中", order_id=2, participant_type='none', workflow=lab_wf)
-        s3.fields.add(c1, c2, c3)
+        s3.fields.add(c0, c1, c2, c3)
         s4 = State.objects.create(name="經理-審批中", order_id=3, participant_type='role', workflow=lab_wf)
         s4.fields.add(c4)
         s4.role_participant.add(role_lab_tl)

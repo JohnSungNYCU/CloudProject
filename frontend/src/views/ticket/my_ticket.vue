@@ -30,7 +30,7 @@
       @sort-change="handleSortChange"
     >
       <el-table-column label="名稱" prop="name"></el-table-column>
-      <el-table-column label="工單流水號" prop="sn" width="240">
+      <el-table-column label="單號" prop="sn" width="240">
         <template slot-scope="{ row }">
           <router-link :to="'/s_ticket/' + row.id">
             <el-link type="success">{{row.sn}}</el-link>
@@ -61,7 +61,15 @@
           <span>{{row.participant}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="截止日期" prop="create_time"></el-table-column>
+      <el-table-column label="截止日期" prop="create_time">
+        <template slot-scope="{ row }">
+          <span>
+          {{
+              JSON.parse(row.customfield).find(item => item.field_key === 'start_time').field_value
+          }}
+          </span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
           <el-button-group>
