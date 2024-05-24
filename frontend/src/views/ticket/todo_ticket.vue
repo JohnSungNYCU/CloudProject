@@ -39,15 +39,7 @@
           <span>{{ row.create_user.username }}</span>
         </template>
       </el-table-column> -->
-      <el-table-column label="截止日期" prop="create_time">
-        <template slot-scope="{ row }">
-          <span>
-          {{
-              JSON.parse(row.customfield).find(item => item.field_key === 'start_time').field_value
-          }}
-          </span>
-        </template>
-      </el-table-column>
+      <el-table-column label="創建日期" prop="create_time"></el-table-column>
     </el-table>
   </div>
 </template>

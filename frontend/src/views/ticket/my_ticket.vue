@@ -51,7 +51,7 @@
         <template slot-scope="{ row }">
             <span>
             {{
-                JSON.parse(row.customfield).find(item => item.field_key === 'status').field_value | AttributeTypeFilter2
+              JSON.parse(row.customfield).find(item => item.field_key === 'status').field_value | AttributeTypeFilter2
             }}
             </span>
         </template>
@@ -61,15 +61,7 @@
           <span>{{row.participant}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="截止日期" prop="create_time">
-        <template slot-scope="{ row }">
-          <span>
-          {{
-              JSON.parse(row.customfield).find(item => item.field_key === 'start_time').field_value
-          }}
-          </span>
-        </template>
-      </el-table-column>
+      <el-table-column label="創建日期" prop="create_time"></el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
           <el-button-group>

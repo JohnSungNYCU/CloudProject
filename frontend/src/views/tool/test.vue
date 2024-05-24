@@ -1,17 +1,17 @@
 <template>
   <div class="app-container">
-    <h1>这是一个测试页面</h1>
-    <h3>下面是你对这个页面的相关操作权限，如果没有，则不会显示相应的按钮</h3>
+    <h1>這是一個測試頁面</h1>
+    <h3>下面是你對這個頁面的相關操作權限，如果沒有，則不會顯示相應的按鈕</h3>
     <el-button v-if="permissionList.add" size="small" type="primary">
       {{ "增加" }}
     </el-button>
 
     <el-button v-if="permissionList.del" size="small" type="danger">
-      {{ "删除" }}
+      {{ "刪除" }}
     </el-button>
 
     <el-button v-if="permissionList.update" size="small" type="warning">
-      {{ "编辑" }}
+      {{ "編輯" }}
     </el-button>
 
     <el-button v-if="permissionList.view" size="small" type="success">

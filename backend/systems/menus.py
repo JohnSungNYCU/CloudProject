@@ -5,7 +5,7 @@ from systems.models import *
 from itertools import chain
 
 
-# 获取管理员权限下所有菜单
+# 獲取管理員權限下所有菜單
 def get_menus_by_user(user):
     user_obj = User.objects.get(username=user)
     # if user_obj.is_admin:
@@ -16,7 +16,7 @@ def get_menus_by_user(user):
         user_roles = user_obj.roles.all()
         group_roles = user_obj.group.roles.all()
         all_roles = sorted(chain(user_roles, group_roles), key=lambda t: t.id, reverse=True)
-        print("用户拥有角色: %s" % all_roles)
+        print("用戶擁有角色: %s" % all_roles)
 
         menu_list = [item.menus.all() for item in all_roles if item.menus.all()][0]
 
@@ -63,13 +63,13 @@ def set_menu(menus, parent_id):
         if item.type == 3:
             menu['hidden'] = True
 
-        # 查询是否有子级
+        # 查詢是否有子級
         menu_children = set_menu(menus, item.id)
         if len(menu_children) > 0:
             menu['children'] = menu_children
 
         if item.type == 2:
-            # 添加子级首页，有这一级NoCache才有效
+            # 添加子級首頁，有這一級NoCache才有效
             menu_index = {
                 'path': 'index',
                 'component': item.code,
@@ -87,15 +87,15 @@ def set_menu(menus, parent_id):
     return all_menus
 
 
-# 新增菜单后自动添加菜单下的常规操作
+# 新增菜單後自動添加菜單下的常規操作
 def init_menu(menu):
     if menu.type == 2:
         menu_list = [
             {"name": "新增", "code": menu.code + "_add", "curl": menu.curl + "/add", 'type': 3, "operate": "add",
              "sequence": 10},
-            {"name": "删除", "code": menu.code + "_del", "curl": menu.curl + "/del", 'type': 3, "operate": "del",
+            {"name": "刪除", "code": menu.code + "_del", "curl": menu.curl + "/del", 'type': 3, "operate": "del",
              "sequence": 20},
-            {"name": "编辑", "code": menu.code + "_update", "curl": menu.curl + "/update", 'type': 3, "operate": "update",
+            {"name": "編輯", "code": menu.code + "_update", "curl": menu.curl + "/update", 'type': 3, "operate": "update",
              "sequence": 30},
             {"name": "查看", "code": menu.code + "_view", "curl": menu.curl + "/view", 'type': 3, "operate": "view",
              "sequence": 40},

@@ -69,7 +69,7 @@ class Command(BaseCommand):
         CustomField.objects.create(field_name="工號", order_id=4, field_attribute=True, field_type=2, field_key="id",
                                    workflow=lab_wf)
         # 建立扩展字段
-        c0 = CustomField.objects.create(field_name="急件狀態", order_id=9, field_type=9, field_key="status", field_choice='{"1":"一般"}', workflow=lab_wf)
+        c0 = CustomField.objects.create(field_name="急件狀態", order_id=40, field_type=9, field_key="status", field_choice='{"1":"一般"}', workflow=lab_wf)
         c1 = CustomField.objects.create(field_name="截止時間", order_id=10, field_type=6, field_key="start_time",
                                         workflow=lab_wf)
         c2 = CustomField.objects.create(field_name="檢測項目", order_id=30, field_type=9, field_key="type",

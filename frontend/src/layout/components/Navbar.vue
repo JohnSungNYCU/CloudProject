@@ -29,11 +29,11 @@
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
-            <el-dropdown-item>{{ "首页" }}</el-dropdown-item>
+            <el-dropdown-item>{{ "首頁" }}</el-dropdown-item>
           </router-link>
-          <el-dropdown-item disabled>{{"个人中心"}}</el-dropdown-item>
+          <el-dropdown-item disabled>{{"個人中心"}}</el-dropdown-item>
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">{{ "退出登录" }}</span>
+            <span style="display:block;" @click="logout">{{ "退出登錄" }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -75,9 +75,9 @@ export default {
     }
   },
   mounted() {
-    var _this = this; //声明一个变量指向vue实例this,保证作用域一致
+    var _this = this; //聲明一個變量指向vue實例this,保證作用域一致
     this.timer = setInterval(function() {
-      _this.cur_date = new Date().toLocaleString(); //修改数据date
+      _this.cur_date = new Date().toLocaleString(); //修改數據date
     }, 1000);
   }
 };
