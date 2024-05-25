@@ -57,7 +57,7 @@
         width="55"
       />
       <el-table-column label="名稱" prop="name"></el-table-column>
-      <el-table-column label="工單流水號" prop="sn" width="240">
+      <el-table-column label="單號" prop="sn" width="240">
         <template slot-scope="{ row }">
           <router-link :to="'/s_ticket/' + row.id">
             <el-link type="success">{{ row.sn }}</el-link>
@@ -74,18 +74,22 @@
           <span>{{ row.state.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="當前狀態" prop="transition">
+      <el-table-column label="急件狀態" prop="transition">
         <template slot-scope="{ row }">
-          <span>{{ row.transition.attribute_type | AttributeTypeFilter }}</span>
-        </template>
+          <span>
+          {{
+            JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2
+          }}
+          </span>
+      </template>
       </el-table-column>
       <el-table-column label="當前處理人" prop="participant">
         <template slot-scope="{ row }">
           <span>{{ row.participant }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="創建時間" prop="create_time"></el-table-column>
-      <el-table-column
+      <el-table-column label="創建日期" prop="create_time"></el-table-column>
+      <!-- <el-table-column
         label="操作"
         align="center"
         class-name="small-padding fixed-width"
@@ -93,7 +97,7 @@
         <template slot-scope="{ row }">
           <el-button-group>
             <el-button
-              v-if="permissionList.del & (username === 'admin')"
+              v-if="permissionList.del && row.state.order_id < 3"
               size="small"
               type="danger"
               @click="handleDelete(row)"
@@ -101,7 +105,7 @@
             >
           </el-button-group>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <div class="table-pagination">
       <pagination

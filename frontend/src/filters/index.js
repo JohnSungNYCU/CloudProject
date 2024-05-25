@@ -131,6 +131,16 @@ export function AttributeTypeFilter(val) {
   return Map[val]
 }
 
+// 属性类型
+export function AttributeTypeFilter2(val) {
+  const Map = {
+    1: '一般',
+    2: '急件',
+    3: '特急件'
+  }
+  return Map[val]
+}
+
 // 流转名称
 export function TransitionNameFilter(val) {
   const Map = {

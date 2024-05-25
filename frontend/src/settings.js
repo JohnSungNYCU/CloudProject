@@ -2,7 +2,7 @@
 
 module.exports = {
   // title: i18n.t('systemTitle'),
-  title: '後臺管理系統',
+  title: '工廠管理系統',
 
   /**
    * @type {boolean} true | false
