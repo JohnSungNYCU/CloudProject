@@ -77,7 +77,7 @@ class Command(BaseCommand):
         c3 = CustomField.objects.create(field_name="comment", order_id=50, field_type=8, field_key="memo",
                                         workflow=lab_wf)
         c4 = CustomField.objects.create(field_name="經理審核", order_id=60, field_type=9, field_key="leader_radio",
-                                        field_choice='{"1":"同意", "2":"不同意"}', workflow=lab_wf)
+                                        field_choice='{"1":"同意 (轉交下一步)", "2":"不同意 (駁回)"}', workflow=lab_wf)
         c5 = CustomField.objects.create(field_name="進行測試", order_id=80, field_type=9, field_key="ops_radio",
                                         field_choice='{"1":"已執行", "2":"未執行"}', workflow=lab_wf)
 
@@ -155,7 +155,7 @@ class Command(BaseCommand):
         c4 = CustomField.objects.create(field_name="comment", order_id=50, field_type=8, field_key="memo",
                                         workflow=fab_wf)
         c5 = CustomField.objects.create(field_name="經理審核", order_id=60, field_type=9, field_key="leader_radio",
-                                        field_choice='{"1":"同意", "2":"不同意"}', workflow=fab_wf)
+                                        field_choice='{"1":"同意 (轉交下一步)", "2":"不同意 (駁回)"}', workflow=fab_wf)
         c6 = CustomField.objects.create(field_name="進行測試", order_id=80, field_type=9, field_key="ops_radio",
                                         field_choice='{"1":"已執行", "2":"未執行"}', workflow=fab_wf)
 
