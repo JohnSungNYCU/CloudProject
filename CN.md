@@ -85,7 +85,8 @@
     - 右上角顯示帳號名稱 
     - 簡轉繁
     - 註冊畫面(?)
-    - 操作的刪除需不需要開 (在my_ticket.vue中把v-if="permissionList.del && row.state.order_id < 3"改成v-if="true")
+    - 操作的刪除需不需要開 (在my_ticket.vue中把v-if="permissionList.del && row.state.order_id < 3"改成v-if="true") (已開在我創建的)
     - 刪除右上角個人中心
     - 刪除logo
+    - 網頁名稱"後臺管理系統"更改
 
