@@ -62,7 +62,7 @@
         </template>
       </el-table-column>
       <el-table-column label="創建日期" prop="create_time"></el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <!-- <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
           <el-button-group>
             <el-button
@@ -73,7 +73,7 @@
             >{{ "刪除" }}</el-button>
           </el-button-group>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <div class="table-pagination">
       <pagination
