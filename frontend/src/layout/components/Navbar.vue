@@ -31,7 +31,7 @@
           <router-link to="/">
             <el-dropdown-item>{{ "首頁" }}</el-dropdown-item>
           </router-link>
-          <el-dropdown-item disabled>{{"個人中心"}}</el-dropdown-item>
+          <!-- <el-dropdown-item disabled>{{"個人中心"}}</el-dropdown-item> -->
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">{{ "退出登錄" }}</span>
           </el-dropdown-item>
