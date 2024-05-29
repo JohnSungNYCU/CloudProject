@@ -28,12 +28,12 @@
           <el-avatar :src="avatar" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
-            <el-dropdown-item>{{ "首頁" }}</el-dropdown-item>
+          <router-link to="/all_ticket">
+            <el-dropdown-item>{{ "所有工單" }}</el-dropdown-item>
           </router-link>
           <!-- <el-dropdown-item disabled>{{"個人中心"}}</el-dropdown-item> -->
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">{{ "退出登錄" }}</span>
+            <span style="display:block;" @click="logout">{{ "登出" }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
