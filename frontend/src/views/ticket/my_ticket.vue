@@ -28,6 +28,7 @@
       style="width: 100%"
       highlight-current-row
       @sort-change="handleSortChange"
+      @contextmenu.native.prevent="handleContextMenu"
     >
       <el-table-column label="名稱" prop="name"></el-table-column>
       <el-table-column label="單號" prop="sn" width="240">
@@ -74,6 +75,22 @@
           </el-button-group>
         </template>
       </el-table-column> -->
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+        <template slot-scope="{ row }">
+          <el-button-group>
+            <el-button
+              size="small"
+              icon="el-icon-arrow-up"
+              @click.stop="handleCommand({ action: 'moveUp', row })"
+            >上移</el-button>
+            <el-button
+              size="small"
+              icon="el-icon-arrow-down"
+              @click.stop="handleCommand({ action: 'moveDown', row })"
+            >下移</el-button>
+          </el-button-group>
+        </template>
+      </el-table-column>
     </el-table>
     <div class="table-pagination">
       <pagination
@@ -122,7 +139,11 @@ export default {
         search: undefined,
         ordering: undefined,
         create_user__username: this.username
-      }
+      },
+      contextMenuVisible: false,
+      contextMenuTop: '0px',
+      contextMenuLeft: '0px',
+      selectedRow: null
     };
   },
   computed: {
@@ -192,7 +213,39 @@ export default {
             message: "已取消刪除"
           });
         });
-    }
+    },
+    handleContextMenu(event) {
+        this.contextMenuVisible = true;
+        this.contextMenuTop = event.clientY + 'px';
+        this.contextMenuLeft = event.clientX + 'px';
+        event.stopPropagation();
+        event.preventDefault();
+      },
+      handleCommand(command) {
+        this.selectedRow = command.row;
+  
+        if (command.action === 'moveUp') {
+          this.moveUp();
+        } else if (command.action === 'moveDown') {
+          this.moveDown();
+        }
+      },
+      moveUp() {
+        const index = this.list.indexOf(this.selectedRow);
+        if (index > 0) {
+          const temp = this.list[index];
+          this.list.splice(index, 1);
+          this.list.splice(index - 1, 0, temp);
+        }
+      },
+      moveDown() {
+        const index = this.list.indexOf(this.selectedRow);
+        if (index < this.list.length - 1) {
+          const temp = this.list[index];
+          this.list.splice(index, 1);
+          this.list.splice(index + 1, 0, temp);
+        }
+      }
   }
 };
 </script>

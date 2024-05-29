@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       title: title,
-      logo:"http://softqual.co.il/wp-content/uploads/2017/06/cropped-favicon.png"
+      logo:"https://logodownload.org/wp-content/uploads/2021/05/tsmc-logo-0.png"
     };
   }
 };

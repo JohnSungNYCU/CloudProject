@@ -8,11 +8,11 @@ from itertools import chain
 # 獲取管理員權限下所有菜單
 def get_menus_by_user(user):
     user_obj = User.objects.get(username=user)
-    # if user_obj.is_admin:
-    #     menus = Menu.objects.all()
-    #     all_roles = Role.objects.all()
-    # else:
-    if True:
+    if user_obj.is_admin:
+        menus = Menu.objects.all()
+        all_roles = Role.objects.all()
+    else:
+    # if True:
         user_roles = user_obj.roles.all()
         group_roles = user_obj.group.roles.all()
         all_roles = sorted(chain(user_roles, group_roles), key=lambda t: t.id, reverse=True)
