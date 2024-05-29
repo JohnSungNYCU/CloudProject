@@ -28,6 +28,15 @@
           <el-avatar :src="avatar" />
         </div>
         <el-dropdown-menu slot="dropdown">
+          <router-link to="/new_ticket">
+            <el-dropdown-item>{{ "新建工單" }}</el-dropdown-item>
+          </router-link>
+          <router-link to="/my_ticket">
+            <el-dropdown-item>{{ "我創建的" }}</el-dropdown-item>
+          </router-link>
+          <router-link to="/todo_ticket">
+            <el-dropdown-item>{{ "我的待辦" }}</el-dropdown-item>
+          </router-link>
           <router-link to="/all_ticket">
             <el-dropdown-item>{{ "所有工單" }}</el-dropdown-item>
           </router-link>
