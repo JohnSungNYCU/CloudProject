@@ -3,6 +3,16 @@
 
 [comment]: <> (- 后端model参考: [loonflow]&#40;https://github.com/blackholll/loonflow&#41;, 非常不错的一个项目)
 [comment]: <> (- 前端设计参考: [花裤衩 vue-element-admin]&#40;https://github.com/PanJiaChen/vue-element-admin&#41;, 大神作品没得说)
+###指令
+後端
+```bash
+python manage.py migrate
+python manage.py init_sys
+python manage.py init_wf
+python manage.py init_ticket
+python manage.py init_leave
+python manage.py runserver
+```
 ## 開發環境
 ### 後端
 安裝依賴
