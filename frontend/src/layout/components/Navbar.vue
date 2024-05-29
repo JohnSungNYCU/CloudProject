@@ -12,7 +12,7 @@
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <div class="right-menu-item">
-          <a class="ip">{{ip}}</a>
+          <!-- <a class="ip">{{ip}}</a> -->
           <a class="date">{{cur_date}}</a>
         </div>
 
