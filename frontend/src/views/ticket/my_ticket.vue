@@ -52,7 +52,9 @@
         <template slot-scope="{ row }">
             <span>
             {{
-              JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2
+              row.name.startsWith('工單')
+              ? '一般'
+              : (JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2)
             }}
             </span>
         </template>
