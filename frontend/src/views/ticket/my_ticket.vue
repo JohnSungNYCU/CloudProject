@@ -50,13 +50,13 @@
       </el-table-column>
       <el-table-column label="急件狀態" prop="transition">
         <template slot-scope="{ row }">
-            <span>
+          <span>
             {{
               row.name.startsWith('工單')
               ? '一般'
-              : (JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2)
+              : (AttributeTypeFilter2(JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value))
             }}
-            </span>
+          </span>
         </template>
     </el-table-column>
       <el-table-column label="當前處理人" prop="participant">
@@ -109,7 +109,7 @@
 <script>
 import { ticket, auth } from "@/api/all";
 import Pagination from "@/components/Pagination";
-import { AttributeTypeFilter2 } from "@/filters";
+// import { AttributeTypeFilter2 } from "@/filters";
 import {
   checkAuthAdd,
   checkAuthDel,
@@ -256,6 +256,14 @@ export default {
         }
         // 將當前的列表順序保存到 localStorage
         localStorage.setItem('myTicketListOrder', JSON.stringify(this.list.map(item => item.id)));
+      },
+      AttributeTypeFilter2(val) {
+        const Map = {
+          1: '一般',
+          2: '急件',
+          3: '特急件'
+        }
+        return Map[val]
       }
   }
 };

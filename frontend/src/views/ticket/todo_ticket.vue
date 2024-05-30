@@ -31,7 +31,7 @@
           {{
             row.name.startsWith('工單')
             ? '一般'
-            : (JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2)
+            : (AttributeTypeFilter2(JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value))
           }}
           </span>
       </template>
@@ -211,6 +211,14 @@ export default {
         // 將當前的列表順序保存到 localStorage
         localStorage.setItem('listOrder', JSON.stringify(this.list.map(item => item.id)));
       },
+      AttributeTypeFilter2(val) {
+        const Map = {
+          1: '一般',
+          2: '急件',
+          3: '特急件'
+        }
+        return Map[val]
+      }
   },
 };
 </script>
