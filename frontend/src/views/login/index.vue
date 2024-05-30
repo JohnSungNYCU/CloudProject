@@ -152,7 +152,7 @@ export default {
               // 登錄成功後，將用戶名存入 localStorage
               localStorage.setItem('username', this.loginForm.username)
 
-              this.$router.push({ path: this.redirect || "/" }).catch(() => {
+              this.$router.push({ path:"/" }).catch(() => {
                 //如果不catch, 登录进去浏览器控制台会报错vue-router.esm.js:2051 Uncaught (in promise) undefined
                 //https://juejin.im/post/5d80d961f265da03ca11a1d9
               });
