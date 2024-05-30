@@ -12,7 +12,7 @@
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <div class="right-menu-item">
-          <!-- <a class="ip">{{ip}}</a> -->
+          <!-- <a class="ip">{{username}}</a> -->
           <a class="date">{{cur_date}}</a>
         </div>
 
@@ -24,8 +24,9 @@
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-        <div class="avatar-wrapper">
-          <el-avatar :src="avatar" />
+        <div class="username">
+          {{username}}
+          <!-- <el-avatar :src="avatar" /> -->
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/new_ticket">
@@ -68,7 +69,8 @@ export default {
   },
   data() {
     return {
-      cur_date: ""
+      cur_date: "",
+      username: localStorage.getItem('username') || 'nousername',
     };
   },
   computed: {
@@ -140,6 +142,10 @@ export default {
       vertical-align: text-bottom;
 
         .ip {
+          color: #39b3d1;
+        }
+
+        .username {
           color: #39b3d1;
         }
 
