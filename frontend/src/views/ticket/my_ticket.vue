@@ -175,6 +175,11 @@ export default {
       this.listQuery.create_user__username =  this.username
       ticket.requestGet(this.listQuery).then(response => {
         this.list = response.results;
+        // 如果 localStorage 中有保存的列表順序，則按照這個順序對列表進行排序
+        const listOrder = JSON.parse(localStorage.getItem('myTicketListOrder'));
+        if (listOrder) {
+          this.list.sort((a, b) => listOrder.indexOf(a.id) - listOrder.indexOf(b.id));
+        }
         this.total = response.count;
         this.listLoading = false;
       });
@@ -237,6 +242,8 @@ export default {
           this.list.splice(index, 1);
           this.list.splice(index - 1, 0, temp);
         }
+        // 將當前的列表順序保存到 localStorage
+        localStorage.setItem('myTicketListOrder', JSON.stringify(this.list.map(item => item.id)));
       },
       moveDown() {
         const index = this.list.indexOf(this.selectedRow);
@@ -245,6 +252,8 @@ export default {
           this.list.splice(index, 1);
           this.list.splice(index + 1, 0, temp);
         }
+        // 將當前的列表順序保存到 localStorage
+        localStorage.setItem('myTicketListOrder', JSON.stringify(this.list.map(item => item.id)));
       }
   }
 };
