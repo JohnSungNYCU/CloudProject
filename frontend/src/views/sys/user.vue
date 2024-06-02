@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input
         v-model="listQuery.search"
-        placeholder="请输入内容"
+        placeholder="請輸入內容"
         clearable
         prefix-icon="el-icon-search"
         style="width: 200px;"
@@ -32,7 +32,7 @@
           type="danger"
           icon="el-icon-delete"
           @click="handleBatchDel"
-        >{{ "删除" }}</el-button>
+        >{{ "刪除" }}</el-button>
       </el-button-group>
     </div>
 
@@ -46,19 +46,19 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="55" />
-      <el-table-column label="用户名" prop="username"></el-table-column>
-      <el-table-column label="真实姓名" prop="realname"></el-table-column>
-      <el-table-column label="头像" align="center">
+      <el-table-column label="用戶名" prop="username"></el-table-column>
+      <el-table-column label="真實姓名" prop="realname"></el-table-column>
+      <!-- <el-table-column label="頭像" align="center">
         <template slot-scope="{ row }">
           <el-popover placement="top" width="200" trigger="hover">
             <el-image :src="row.avatar" fit="cover"></el-image>
             <el-avatar slot="reference" :src="row.avatar"></el-avatar>
           </el-popover>
         </template>
-      </el-table-column>
-      <el-table-column label="状态" prop="status" sortable="custom">
+      </el-table-column> -->
+      <el-table-column label="狀態" prop="status" sortable="custom">
         <template slot-scope="{ row }">
-          <el-tag v-if="row.status" type="success">启用</el-tag>
+          <el-tag v-if="row.status" type="success">啟用</el-tag>
           <el-tag v-else type="danger">禁用</el-tag>
         </template>
       </el-table-column>
@@ -70,14 +70,14 @@
               size="small"
               type="primary"
               @click="handleUpdate(row)"
-            >{{ "编辑" }}</el-button>
-            <el-popconfirm title="你确定要删除吗" @onConfirm="handleDelete(row)">
+            >{{ "編輯" }}</el-button>
+            <el-popconfirm title="你確定要刪除嗎" @onConfirm="handleDelete(row)">
               <el-button
                 slot="reference"
                 v-if="permissionList.del"
                 size="small"
                 type="danger"
-              >{{ "删除" }}</el-button>
+              >{{ "刪除" }}</el-button>
             </el-popconfirm>
           </el-button-group>
         </template>
@@ -105,10 +105,10 @@
         label-width="80px"
         style="width: 400px; margin-left:50px;"
       >
-        <el-form-item label="用户名" prop="username">
+        <el-form-item label="用戶名" prop="username">
           <el-input v-model="temp.username" :disabled="dialogStatus === 'create' ? false : true" />
         </el-form-item>
-        <el-form-item v-if="dialogStatus === 'create' ? true : false" label="密码" prop="password">
+        <el-form-item v-if="dialogStatus === 'create' ? true : false" label="密碼" prop="password">
           <el-input
             v-model="temp.password"
             placeholder="6-20位"
@@ -117,10 +117,10 @@
             maxlength="20"
           />
         </el-form-item>
-        <el-form-item label="真实姓名" prop="realname">
+        <el-form-item label="真實姓名" prop="realname">
           <el-input v-model="temp.realname" />
         </el-form-item>
-        <el-form-item label="分组" prop="realname">
+        <el-form-item label="分組" prop="realname">
           <SelectTree
             v-model.number="temp.group"
             type="number"
@@ -132,13 +132,13 @@
             @getValue="getSelectTreeValue($event, 2)"
           />
         </el-form-item>
-        <el-form-item label="头像" prop="avatar">
+        <!-- <el-form-item label="頭像" prop="avatar">
           <el-input v-model="temp.avatar" />
-        </el-form-item>
-        <el-form-item label="介绍" prop="memo">
+        </el-form-item> -->
+        <!-- <el-form-item label="介紹" prop="memo">
           <el-input v-model="temp.memo" />
-        </el-form-item>
-        <el-form-item label="状态" prop="status">
+        </el-form-item> -->
+        <el-form-item label="狀態" prop="status">
           <el-switch v-model="temp.status" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
         </el-form-item>
         <el-form-item label="角色" prop="roles">
@@ -160,7 +160,7 @@
         <el-button
           type="primary"
           @click="dialogStatus === 'create' ? createData() : updateData()"
-        >{{ "确定" }}</el-button>
+        >{{ "確定" }}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -189,7 +189,7 @@ export default {
         value: "id",
         label: "name",
         children: "children",
-        placeholder: "父级"
+        placeholder: "父級"
       },
       operationList: [],
       permissionList: {
@@ -212,19 +212,19 @@ export default {
       dialogFormVisible: false,
       dialogStatus: "",
       textMap: {
-        update: "编辑",
+        update: "編輯",
         create: "添加"
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
+          { required: true, message: "請輸入用戶名", trigger: "blur" }
         ],
         password: [
           {
             min: 6,
             max: 20,
             required: true,
-            message: "长度在 6 到 20 个字符",
+            message: "長度在 6 到 20 個字符",
             trigger: "blur"
           }
         ]
@@ -332,7 +332,7 @@ export default {
               this.dialogFormVisible = false;
               this.$notify({
                 title: "成功",
-                message: "创建成功",
+                message: "創建成功",
                 type: "success",
                 duration: 2000
               });
@@ -384,7 +384,7 @@ export default {
     handleDelete(row) {
       user.requestDelete(row.id).then(() => {
         this.$message({
-          message: "删除成功",
+          message: "刪除成功",
           type: "success"
         });
         this.getList();
@@ -402,8 +402,8 @@ export default {
       this.multipleSelection = val;
     },
     handleBatchDel() {
-      this.$confirm("是否确定删除?", "提示", {
-        confirmButtonText: "确定",
+      this.$confirm("是否確定刪除?", "提示", {
+        confirmButtonText: "確定",
         cancelButtonText: "取消",
         type: "warning"
       })
@@ -417,7 +417,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除"
+            message: "已取消刪除"
           });
         });
     },

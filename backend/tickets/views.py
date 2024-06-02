@@ -21,6 +21,7 @@ class TicketViewSet(BulkModelMixin):
     def get_queryset(self):
         try:
             user = User.objects.get(username=self.request.user)
+            return Ticket.objects.all()
             if user.is_admin:
                 return Ticket.objects.all()
             else:

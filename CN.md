@@ -91,4 +91,5 @@
     - 註冊畫面(?)
     - 刪除右上角個人中心 (已刪除)
     - 操作的刪除需不需要開 (在my_ticket.vue中把v-if="permissionList.del && row.state.order_id < 3"改成v-if="true") (不用)
+    - 設定轉交需選取上級帳號才能轉
 
