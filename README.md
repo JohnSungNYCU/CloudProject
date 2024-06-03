@@ -1,8 +1,11 @@
-# django + vue 工作流管理系统
-包含 `使用者`、`角色`、`選單`、`權限` 管理， 這是基礎的工作流程系統，初始化會產生請假工作流程， 也可以自行配置其他工作流程例如，發布工單等。
+# Fab 測試需求工單管理系統
+通過 Vue.js 和 Django 的結合，實現了前後端分離的高效架構。系統包含 `使用者`、`角色`、`選單`、`權限` 管理，初始化工作流程並發布工單。
+不僅提供了良好的用戶體驗，還保證了系統的穩定性和安全性。此系統旨在幫助Fab提高測試流程的管理效率，確保測試工作高效有序地進行。
 
-[comment]: <> (- 后端model参考: [loonflow]&#40;https://github.com/blackholll/loonflow&#41;, 非常不错的一个项目)
-[comment]: <> (- 前端设计参考: [花裤衩 vue-element-admin]&#40;https://github.com/PanJiaChen/vue-element-admin&#41;, 大神作品没得说)
+### 參考架構
+- 後端: [loonflow]&#40;https://github.com/blackholll/loonflow&#41;
+- 前端: [vue-element-admin]&#40;https://github.com/PanJiaChen/vue-element-admin&#41;
+
 ### 指令
 後端
 ```bash
