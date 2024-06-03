@@ -56,20 +56,20 @@ npm run dev
 ## 開始使用
 使用 `admin` 登錄，有權限對Fab、Lab與經理帳號作調整或新建帳號。
 ### 管理人員
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/admin.png)
+![role](https://github.com/Alextien40816291/CN_final/blob/main/gifs/admin.png)
 
 Fab 人員使用創建之帳號登入，並新建工單。
 ### 新建工單
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_new.png)
+![role](https://github.com/Alextien40816291/CN_final/blob/main/gifs/ticket_new.png)
 
 ### 我創建的
 列出由本帳號所建立之委託單 / 工單。
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_my.png)
+![role](https://github.com/Alextien40816291/CN_final/blob/main/gifs/ticket_my.png)
 
 ### 我的待辦
 列出等待本帳號處理之委託單 / 工單。
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_todo.png)
+![role](https://github.com/Alextien40816291/CN_final/blob/main/gifs/ticket_todo.png)
 
 ### 所有工單
 所有的工單列表。
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_all.png)
+![role](https://github.com/Alextien40816291/CN_final/blob/main/gifs/ticket_all.png)
