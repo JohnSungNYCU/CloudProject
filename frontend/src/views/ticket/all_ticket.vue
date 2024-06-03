@@ -78,7 +78,9 @@
         <template slot-scope="{ row }">
           <span>
           {{
-            JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2
+            row.name.startsWith('工單')
+            ? '一般'
+            : (AttributeTypeFilter2(JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value))
           }}
           </span>
       </template>
@@ -264,6 +266,14 @@ export default {
           });
         });
     },
+    AttributeTypeFilter2(val) {
+      const Map = {
+        1: '一般',
+        2: '急件',
+        3: '特急件'
+      }
+      return Map[val]
+    }
   },
 };
 </script>

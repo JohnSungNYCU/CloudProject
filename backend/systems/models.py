@@ -137,7 +137,7 @@ class User(BaseModel, PermissionsMixin, AbstractBaseUser):
     email = models.EmailField(blank=True, default="itimor@126.com", verbose_name='郵箱')
     avatar = models.CharField(max_length=255, default='http://m.imeitou.com/uploads/allimg/2017110610/b3c433vwhsk.jpg')
     status = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'  # 必須有一個唯一標識--USERNAME_FIELD
 

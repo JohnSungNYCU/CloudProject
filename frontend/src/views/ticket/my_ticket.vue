@@ -50,11 +50,13 @@
       </el-table-column>
       <el-table-column label="急件狀態" prop="transition">
         <template slot-scope="{ row }">
-            <span>
+          <span>
             {{
-              JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value | AttributeTypeFilter2
+              row.name.startsWith('工單')
+              ? '一般'
+              : (AttributeTypeFilter2(JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value))
             }}
-            </span>
+          </span>
         </template>
     </el-table-column>
       <el-table-column label="當前處理人" prop="participant">
@@ -107,7 +109,7 @@
 <script>
 import { ticket, auth } from "@/api/all";
 import Pagination from "@/components/Pagination";
-import { AttributeTypeFilter2 } from "@/filters";
+// import { AttributeTypeFilter2 } from "@/filters";
 import {
   checkAuthAdd,
   checkAuthDel,
@@ -175,6 +177,11 @@ export default {
       this.listQuery.create_user__username =  this.username
       ticket.requestGet(this.listQuery).then(response => {
         this.list = response.results;
+        // 如果 localStorage 中有保存的列表順序，則按照這個順序對列表進行排序
+        const listOrder = JSON.parse(localStorage.getItem('myTicketListOrder'));
+        if (listOrder) {
+          this.list.sort((a, b) => listOrder.indexOf(a.id) - listOrder.indexOf(b.id));
+        }
         this.total = response.count;
         this.listLoading = false;
       });
@@ -237,6 +244,8 @@ export default {
           this.list.splice(index, 1);
           this.list.splice(index - 1, 0, temp);
         }
+        // 將當前的列表順序保存到 localStorage
+        localStorage.setItem('myTicketListOrder', JSON.stringify(this.list.map(item => item.id)));
       },
       moveDown() {
         const index = this.list.indexOf(this.selectedRow);
@@ -245,6 +254,16 @@ export default {
           this.list.splice(index, 1);
           this.list.splice(index + 1, 0, temp);
         }
+        // 將當前的列表順序保存到 localStorage
+        localStorage.setItem('myTicketListOrder', JSON.stringify(this.list.map(item => item.id)));
+      },
+      AttributeTypeFilter2(val) {
+        const Map = {
+          1: '一般',
+          2: '急件',
+          3: '特急件'
+        }
+        return Map[val]
       }
   }
 };
