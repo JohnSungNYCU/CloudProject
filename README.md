@@ -3,8 +3,8 @@
 不僅提供了良好的用戶體驗，還保證了系統的穩定性和安全性。此系統旨在幫助Fab提高測試流程的管理效率，確保測試工作高效有序地進行。
 
 ### 參考架構
-- 後端: [loonflow]&#40;https://github.com/blackholll/loonflow&#41;
-- 前端: [vue-element-admin]&#40;https://github.com/PanJiaChen/vue-element-admin&#41;
+- 後端: [loonflow] https://github.com/blackholll/loonflow
+- 前端: [vue-element-admin] https://github.com/PanJiaChen/vue-element-admin
 
 ### 指令
 後端
@@ -32,8 +32,8 @@ python manage.py init_sys
 ```
 
 生成工作流
-- 用戶 `ops`,`ops_tl`,`dev`,`dev_tl`,`hr`,`hr_tl`
-- 密碼 `123456`
+- 預設使用者帳號 `FabA`,`FabB`,`FabC`,`fab_tl_1`,`fab_tl_2`,`LabA`,`LabB`,`LabC`,`lab_tl_1`,`lab_tl_2`
+- 初始密碼皆為 `123456`
 
 ```bash
 python manage.py init_wf
@@ -54,21 +54,22 @@ npm run dev
 ```
 
 ## 開始使用
-使用 `admin` 登陸
-### 給所有角色分配工作流程權限
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/role.png)
+使用 `admin` 登錄，有權限對Fab、Lab與經理帳號作調整或新建帳號。
+### 管理人員
+![role](https://github.com/itimor/one-workflow/raw/master/gifs/admin.png)
 
-### 分配選單 和 資料 權限
-![role_edit](https://github.com/itimor/one-workflow/raw/master/gifs/role_edit.png)
-
-### 配置假期工作流
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/leave.png)
-
+Fab 人員使用創建之帳號登入，並新建工單。
 ### 新建工單
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/new.png)
+![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_new.png)
 
-### 編輯工單
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/edit.png)
+### 我創建的
+列出由本帳號所建立之委託單 / 工單。
+![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_my.png)
+
+### 我的待辦
+列出等待本帳號處理之委託單 / 工單。
+![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_todo.png)
 
 ### 所有工單
-![role](https://github.com/itimor/one-workflow/raw/master/gifs/all.png)
+所有的工單列表。
+![role](https://github.com/itimor/one-workflow/raw/master/gifs/ticket_all.png)
