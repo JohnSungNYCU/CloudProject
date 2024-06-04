@@ -7,15 +7,18 @@ RUN apk update && apk add netcat-openbsd
 # Copy package.json and install dependencies
 COPY package.json /app
 RUN npm install
-
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 # Copy the frontend code and install Node.js dependencies
 COPY . /app
+RUN chmod +x /app/wait-for-backend.sh
 
 # Build the Vue app
 RUN npm run build
 
-COPY ./wait-for-backend.sh /app
-RUN chmod +x /app/wait-for-backend.sh
+# COPY ./wait-for-backend.sh /app
 # Expose the port the app runs on
 EXPOSE 8080
 # Command to run your app
