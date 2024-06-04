@@ -14,6 +14,13 @@ class MYSQL:
             passwd=db["passwd"],
             db=db["db"],
             charset='utf8')
+        # self.conn = MySQLdb.connect(
+        #     host=os.getenv("DB_HOST", "db"),
+        #     port=int(os.getenv("DB_PORT", 3306)),
+        #     user=os.getenv("DB_USER", "root"),
+        #     passwd=os.getenv("DB_PASSWORD", "TY%pwd123"),
+        #     db=os.getenv("DB_NAME", "xxl_job"),
+        #     charset='utf8')
         self.cursor = self.conn.cursor()
 
     def insert(self):
@@ -40,12 +47,19 @@ class MYSQL:
 
 if __name__ == '__main__':
     xxljob_info = {
-        "host": "localhost",
+        "host": "db",
         "port": 3306,
         "user": "root",
         "passwd": "TY%pwd123",
         "db": "xxl_job",
     }
+    # xxljob_info = {
+    #     "host": os.getenv("DB_HOST", "db"),
+    #     "port": int(os.getenv("DB_PORT", 3306)),
+    #     "user": os.getenv("DB_USER", "root"),
+    #     "passwd": os.getenv("DB_PASSWORD", "TY%pwd123"),
+    #     "db": os.getenv("DB_NAME", "xxl_job"),
+    # }
     jobapi = MYSQL(xxljob_info)
     sql = "select * from xxl_job_group"
     data = jobapi.insert(sql)
