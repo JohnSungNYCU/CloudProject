@@ -17,10 +17,10 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'one',
+        'NAME': 'xxl_job',
         'USER': 'root',
         'PASSWORD': 'TY%pwd123',
-        'HOST': 'db',
+        'HOST': 'web-mysql',
         'OPTIONS': {
             "init_command": "SET foreign_key_checks=0;",
         }
