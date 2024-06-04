@@ -23,7 +23,7 @@ DATABASES = {
         'HOST': 'web-mysql',
         'OPTIONS': {
             "init_command": "SET foreign_key_checks=0;",
-            'charset': 'utf8',
+            'charset': 'utf8mb4',
         }
     }
 }

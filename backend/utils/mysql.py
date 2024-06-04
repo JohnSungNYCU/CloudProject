@@ -13,7 +13,7 @@ class MYSQL:
             user=db["user"],
             passwd=db["passwd"],
             db=db["db"],
-            charset='utf8')
+            charset='utf8mb4')
         self.cursor = self.conn.cursor()
 
     def insert(self):

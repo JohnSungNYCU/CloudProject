@@ -3,7 +3,7 @@ services:
   web-mysql:
     image: mysql:5.7
     environment:
-      MYSQL_CHARSET: utf8
+      MYSQL_CHARSET: utf8mb4
       MYSQL_COLLATION: utf8mb4_unicode_ci
       MYSQL_ROOT_PASSWORD: TY%pwd123
       MYSQL_DATABASE: xxl_job
