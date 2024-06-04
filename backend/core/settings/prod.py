@@ -20,7 +20,7 @@ DATABASES = {
         'NAME': 'one',
         'USER': 'root',
         'PASSWORD': 'TY%pwd123',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'OPTIONS': {
             "init_command": "SET foreign_key_checks=0;",
         }

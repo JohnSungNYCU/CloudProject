@@ -1,0 +1,41 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: TY%pwd123
+      MYSQL_DATABASE: xxl_job
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+      DATABASE_USER: root
+      DATABASE_PASSWORD: TY%pwd123
+      DATABASE_NAME: xxl_job
+    # command: ["./wait-for-db.sh", "db", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+    depends_on:
+      - db
+  frontend:
+    build:
+      context:  ./frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/app
+    environment:
+      DB_HOST: db
+    depends_on:
+      - backend
+volumes:
+  db_data:
