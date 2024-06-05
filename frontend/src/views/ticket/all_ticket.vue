@@ -80,7 +80,7 @@
           {{
             row.name.startsWith('工單')
             ? '一般'
-            : (AttributeTypeFilter2(JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 7).field_value))
+            : (AttributeTypeFilter2(JSON.parse(row.customfield).find(item => item.field_key === 'status' || item.customfield % 10 === 8).field_value))
           }}
           </span>
       </template>

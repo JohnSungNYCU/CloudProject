@@ -26,8 +26,16 @@
                 <el-form-item
                   :label="item.customfield.field_name"
                   :prop="item.field_key"
-                  :rules="match_fields.includes(item.customfield.id)?
-                  [{ required: true, message: '請輸入' + item.customfield.field_name, trigger: 'blur' },]:[]"
+                  :rules="
+                    match_fields.includes(item.customfield.id) && item.field_type !== 15
+                      ? [
+                          { 
+                            required: true, 
+                            message: '請輸入' + item.customfield.field_name, 
+                            trigger: 'blur' 
+                          },
+                        ]:[]
+                  "
                 >
                   <el-input
                     v-if="item.customfield.field_type === 1"
@@ -166,6 +174,11 @@
                   >
                     <el-option v-for="t in user_list" :key="t.id" :label="t.username"></el-option>
                   </el-select>
+
+                  <div v-if="uploadedFileName && item.customfield.field_type === 15">
+                    {{ uploadedFileName }}
+                  </div>
+
                 </el-form-item>
               </el-col>
             </el-row>
@@ -322,6 +335,8 @@ import {
   auth,
 } from "@/api/all";
 import { mapGetters } from "vuex";
+import { getToken } from '@/utils/auth'
+
 
 export default {
   name: "s_ticket",
@@ -365,6 +380,7 @@ export default {
         "role": "角色",
       },
       deny_check: false, // 允许审核
+      fileList: [], // Added for file upload
     };
   },
   computed: {
@@ -374,6 +390,9 @@ export default {
         const d = eval("(" + date + ")");
         return d;
       };
+    },
+    uploadedFileName() {
+      return this.$store.state.fileUpload.uploadedFileName;
     },
   },
   created() {
@@ -528,6 +547,15 @@ export default {
             .catch(() => {});
         }
       });
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    getAuthToken() {
+      return getToken(); // This is assuming you have a method to get the token
     },
   },
 };

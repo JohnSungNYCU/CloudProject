@@ -14,6 +14,7 @@ export const perm = new Request('/sys/perm/')
 // tools
 export const audit = new Request('/tool/audit/')
 export const simple = new Request('/tool/simple/')
+export const upload = new Request('/tool/upload/')
 
 // workflows
 export const workflowtype = new Request('/workflow/workflowtype/')
