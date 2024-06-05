@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 
 RUN chmod +x /app/init.sh
-
+RUN ./init.sh
 EXPOSE 8000
 
 # Run manage.py when the container launches

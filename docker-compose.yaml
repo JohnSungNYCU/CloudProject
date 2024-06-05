@@ -1,37 +1,35 @@
 version: '3'
 services:
-  web-mysql:
-    image: mysql:5.7
-    environment:
-      MYSQL_CHARSET: utf8mb4
-      MYSQL_COLLATION: utf8mb4_unicode_ci
-      MYSQL_ROOT_PASSWORD: TY%pwd123
-      MYSQL_DATABASE: xxl_job
-    restart: always
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./backend/my.cnf:/etc/mysql/my.cnf
+  # web-mysql:
+  #   image: mysql:5.7
+  #   environment:
+  #     # MYSQL_CHARSET: utf8mb4
+  #     # MYSQL_COLLATION: utf8mb4_unicode_ci
+  #     MYSQL_ROOT_PASSWORD: TY%pwd123
+  #     MYSQL_DATABASE: xxl_job
+  #   restart: always
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+  #     - ./backend/my.cnf:/etc/mysql/my.cnf
   backend:
-    command: ["dockerize", "-wait", "tcp://web-mysql:3306", "-timeout", "60s", "--", "./init.sh"]
+    # command: ["dockerize", "-wait", "tcp://web-mysql:3306", "-timeout", "60s", "--", "./init.sh"]
     build:
       context: ./backend
     ports:
       - "8000:8000"
     environment:
-      DB_HOST: web-mysql
+      DB_HOST: 172.25.112.4
       DB_PORT: 3306
       DB_USER: root
       DB_PASSWORD: TY%pwd123
       DB_NAME: xxl_job
-    depends_on:
-      - web-mysql
   frontend:
     build:
       context: ./frontend
     ports:
-      - "8080:8080"
+      - "8080:80"
     depends_on:
       - backend
     # command: ["./wait-for-backend.sh", "backend", "--", "npm", "run", "dev"]
