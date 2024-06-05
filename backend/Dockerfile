@@ -17,8 +17,9 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 
-RUN chmod +x /app/init.sh
-
+RUN chmod +x /app/init.sh /app/wait-for-db.sh
+# RUN ./wait-for-db.sh web-mysql
+# RUN python manage.py runserver
 EXPOSE 8000
 
 # Run manage.py when the container launches
