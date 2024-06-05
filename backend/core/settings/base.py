@@ -152,7 +152,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'formatters': {
         'simple': {
             'format': '%(levelname)s %(asctime)s %(message)s',

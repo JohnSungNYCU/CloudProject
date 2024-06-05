@@ -13,21 +13,20 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             self.stdout.write(self.style.SUCCESS('############ 初始化角色 ###########'))
-            role, created = Role.objects.create(name='top', code='top', sequence=0, parent=None)
-        except Exception as e:
-            self.stdout.write(self.style.ERROR('失敗原因: ' + str(e)))
+            role = Role.objects.create(name='top', code='top', sequence=0, parent=None)
+        except:
             raise CommandError('初始化角色失敗')
 
         try:
             self.stdout.write(self.style.SUCCESS('############ 初始化用戶組 ###########'))
-            group, created = Group.objects.create(name='top', code='top', sequence=0, parent=None)
+            group = Group.objects.create(name='top', code='top', sequence=0, parent=None)
             group.roles.add(role)
         except:
             raise CommandError('初始化用戶組失敗')
 
         try:
             self.stdout.write(self.style.SUCCESS('############ 初始化用戶 ###########'))
-            user, created = User.objects.create(username='admin', realname = '管理員', password=make_password("123456"), group=group, is_admin=True)
+            user = User.objects.create(username='admin', realname = '管理員', password=make_password("123456"), group=group, is_admin=True)
             user.roles.add(role)
         except:
             raise CommandError('初始化用戶失敗')
