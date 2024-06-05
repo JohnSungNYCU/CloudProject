@@ -571,12 +571,24 @@ export default {
       return getToken(); // This is assuming you have a method to get the token
     },
     handleUploadSuccess(response, file, fileList) {
-    const fileName = response.fileName || file.name;
-    this.storeFileName(fileName);
+      if (response.code === 20000 && response.results) {
+        const serverFileName = response.results.filename;
+        const fileUrl = response.results.file;
+        
+        // Extract original file name (before server modifications)
+        const originalFileName = file.name || serverFileName.split('-')[0] + '.pdf';
+
+        this.$store.dispatch('fileUpload/setUploadedFileInfo', {
+          name: originalFileName,
+          url: fileUrl
+        });
+
+        this.$message.success('File uploaded successfully');
+      } else {
+        this.$message.error('File upload failed');
+        console.error('Upload failed:', response);
+      }
     },
-    storeFileName(fileName) {
-      this.$store.commit('fileUpload/setUploadedFileName', fileName);
-    }
-  },
+  }
 };
 </script>

@@ -175,8 +175,15 @@
                     <el-option v-for="t in user_list" :key="t.id" :label="t.username"></el-option>
                   </el-select>
 
-                  <div v-if="uploadedFileName && item.customfield.field_type === 15">
-                    {{ uploadedFileName }}
+                  <div v-if=" (item.customfield.field_type === 15)">
+                    <a 
+                      :href="uploadedFileUrl" 
+                      :download="uploadedFileName"
+                      @click.prevent="downloadFile"
+                      class="file-link"
+                    >
+                      {{ uploadedFileName }}
+                    </a>
                   </div>
 
                 </el-form-item>
@@ -394,6 +401,9 @@ export default {
     uploadedFileName() {
       return this.$store.state.fileUpload.uploadedFileName;
     },
+    uploadedFileUrl() {
+      return this.$store.state.fileUpload.uploadedFileUrl;
+    },
   },
   created() {
     const id = this.$route.params && this.$route.params.id;
@@ -557,6 +567,30 @@ export default {
     getAuthToken() {
       return getToken(); // This is assuming you have a method to get the token
     },
+    async downloadFile() {
+      try {
+        if (this.uploadedFileUrl) {
+          const response = await fetch(this.uploadedFileUrl);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', this.uploadedFileName);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        } else {
+          this.$message.error('File URL not available');
+        }
+      } catch (error) {
+        this.$message.error('Failed to download file. Please try again.');
+        console.error('Download error:', error);
+      }
+    }
   },
 };
 </script>
@@ -579,5 +613,30 @@ export default {
   .el-form-item {
     margin-bottom: 5px;
   }
+}
+.file-link {
+  color: #1976d2;  /* Material-UI's primary blue, adjust as needed */
+  text-decoration: none;  /* Remove underline by default */
+  cursor: pointer;  /* Show pointer cursor on hover */
+  font-weight: 500;  /* Makes the link slightly bolder */
+}
+.file-link:hover {
+  text-decoration: underline;  /* Underline on hover */
+  color: #1565c0;  /* Slightly darker blue on hover */
+}
+
+.file-link:active {
+  color: #0d47a1;  /* Even darker blue when clicked */
+}
+
+/* Optional: Add a subtle transition for color changes */
+.file-link {
+  transition: color 0.3s ease;
+}
+
+/* Optional: Add an icon before the link */
+.file-link::before {
+  content: '📄 ';  /* You can use any suitable emoji or icon */
+  margin-right: 4px;
 }
 </style>
