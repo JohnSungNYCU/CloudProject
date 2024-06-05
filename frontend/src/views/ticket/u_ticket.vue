@@ -573,14 +573,20 @@ export default {
     handleUploadSuccess(response, file, fileList) {
       if (response.code === 20000 && response.results) {
         const serverFileName = response.results.filename;
-        const fileUrl = response.results.file;
+        let fileUrl = response.results.file;
         
-        // Extract original file name (before server modifications)
+        // Replace localhost or 127.0.0.1 with the server's IP
+        const serverIP = 'websystem.life'; // Your server's actual IP
+        const localhost = '0.0.0.0'
+        var ipRegex = new RegExp('\b' + localhost + '\b');
+        var newUrl = originalUrl.replace(ipRegex, serverIP);
+
+        // Extract original file name
         const originalFileName = file.name || serverFileName.split('-')[0] + '.pdf';
 
         this.$store.dispatch('fileUpload/setUploadedFileInfo', {
           name: originalFileName,
-          url: fileUrl
+          url: newUrl
         });
 
         this.$message.success('File uploaded successfully');

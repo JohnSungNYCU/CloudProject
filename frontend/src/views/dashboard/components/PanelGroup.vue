@@ -4,7 +4,7 @@
       <router-link to="/new_ticket">
         <div class="card-panel"  @click="handleSetLineChartData('group')">
           <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="mail" class-name="card-panel-icon" />
+            <img src="https://i.postimg.cc/gcS5bNVz/image.png" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
@@ -18,7 +18,7 @@
       <router-link to="/my_ticket">
         <div class="card-panel" @click="handleSetLineChartData('messages')">
           <div class="card-panel-icon-wrapper icon-message">
-            <svg-icon icon-class="user" class-name="card-panel-icon" />
+            <img src="https://i.postimg.cc/3NVn4f12/image.png" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
@@ -32,7 +32,7 @@
       <router-link to="/todo_ticket">
         <div class="card-panel" @click="handleSetLineChartData('purchases')">
           <div class="card-panel-icon-wrapper icon-money">
-            <svg-icon icon-class="list" class-name="card-panel-icon" />
+            <img src="https://i.postimg.cc/8zBcYQLn/1.png" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
@@ -46,7 +46,7 @@
       <router-link to="/all_ticket">
         <div class="card-panel" @click="handleSetLineChartData('shoppings')">
           <div class="card-panel-icon-wrapper icon-shopping">
-            <svg-icon icon-class="group" class-name="card-panel-icon" />
+            <img src="https://i.postimg.cc/fWCstcYp/image.png" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">

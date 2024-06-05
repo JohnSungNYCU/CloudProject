@@ -182,7 +182,7 @@
                       @click.prevent="downloadFile"
                       class="file-link"
                     >
-                      {{ uploadedFileName }}
+                      {{ uploadedFileName }} report.pdf
                     </a>
                   </div>
 
@@ -584,7 +584,7 @@ export default {
           document.body.removeChild(link);
           window.URL.revokeObjectURL(url);
         } else {
-          this.$message.error('File URL not available');
+          // this.$message.error('File URL not available');
         }
       } catch (error) {
         this.$message.error('Failed to download file. Please try again.');
