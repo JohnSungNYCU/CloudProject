@@ -16,7 +16,7 @@ COPY . /app
 
 # Build the Vue app
 RUN npm run build
-RUN chmod +x /app/wait-for-backend.sh
+
 # Expose the port the app runs on
 EXPOSE 8080
 # Command to run your app

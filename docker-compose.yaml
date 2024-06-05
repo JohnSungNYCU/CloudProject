@@ -14,8 +14,7 @@ services:
       - db_data:/var/lib/mysql
       - ./backend/my.cnf:/etc/mysql/my.cnf
   backend:
-    # command: ["dockerize", "-wait", "tcp://web-mysql:3306", "-timeout", "60s", "--", "./init.sh"]
-    command: ["./wait-for-db.sh", "web-mysql", "--", "./init.sh"]
+    command: ["dockerize", "-wait", "tcp://web-mysql:3306", "-timeout", "60s", "--", "./init.sh"]
     build:
       context: ./backend
     ports:
@@ -35,7 +34,7 @@ services:
       - "8080:8080"
     depends_on:
       - backend
-    command: ["./wait-for-backend.sh", "backend", "--", "npm", "run", "dev"]
-    # command: ["dockerize", "-wait", "tcp://backend:8000", "-timeout", "60s", "--", "npm", "run", "dev"]
+    # command: ["./wait-for-backend.sh", "backend", "--", "npm", "run", "dev"]
+    command: ["dockerize", "-wait", "tcp://backend:8000", "-timeout", "60s", "--", "npm", "run", "dev"]
 volumes:
   db_data:
