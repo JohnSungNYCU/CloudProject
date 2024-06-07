@@ -22,17 +22,27 @@ class ModelViewSet(viewsets.ModelViewSet):
         self.resultData = False
 
     def watch_audit_log(self, request):
-
         ip = request.META.get("HTTP_X_FORWARDED_FOR", "")
         if not ip:
             ip = request.META.get('REMOTE_ADDR', "")
         method = request._request.method
+
+        # Handle query params (these are usually not files)
+        query_params = request.query_params
+
+        # Handle request data, excluding file uploads
+        json_data = {}
+        if hasattr(request, 'data'):
+            for key, value in request.data.items():
+                if not hasattr(value, 'temporary_file_path'):  # This checks if it's not a file
+                    json_data[key] = value
+
         RequestEvent.objects.create(
             url=request.path,
             method=method,
             query_string=json.dumps({
-                'query_params': request.query_params,
-                'json': request.data
+                'query_params': query_params,
+                'json': json_data
             }),
             user=self.request.user,
             remote_ip=ip,

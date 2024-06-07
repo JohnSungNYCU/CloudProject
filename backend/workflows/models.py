@@ -4,6 +4,8 @@
 from django.db import models
 from common.models import BaseModel
 from systems.models import *
+from tools.models import Upload
+
 
 
 class WorkflowType(BaseModel):
@@ -62,6 +64,7 @@ field_type = {
     12: '多選框',
     13: '多選下拉',
     14: '多選用戶名',
+    15: '文件上傳',
 }
 
 
@@ -82,6 +85,8 @@ class CustomField(BaseModel):
                                     help_text='radio,checkbox,select,multiselect類型可供選擇的選項，格式為json如:{"1":"中國", "2":"美國"},注意數字也需要引號')
     label = models.CharField('標籤', max_length=100, blank=True, default='{}',
                              help_text='自定義標籤，json格式，調用方可根據標籤自行處理特殊場景邏輯，loonflow只保存文本內容')
+    upload = models.ForeignKey(Upload, on_delete=models.SET_NULL, null=True, blank=True, related_name='custom_fields')
+    
 
     def __str__(self):
         return self.field_name

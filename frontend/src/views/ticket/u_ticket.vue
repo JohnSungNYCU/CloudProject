@@ -22,7 +22,7 @@
                   :label="item.field_name"
                   :prop="item.field_key"
                   :rules="
-                    match_fields.includes(item.id)
+                    match_fields.includes(item.id) && item.field_type !== 15
                       ? [
                           {
                             required: true,
@@ -202,6 +202,23 @@
                       :value="t.username"
                     ></el-option>
                   </el-select>
+
+                  <el-upload
+                    v-if="item.field_type === 15"
+                    action="/api/tool/upload/"
+                    :headers="uploadHeaders"
+                    :on-preview="handlePreview"
+                    :on-remove="handleRemove"
+                    :file-list="fileList"
+                    :data="{ username: username }" 
+                    :disabled="item.field_attribute || !match_fields.includes(item.id)"
+                    accept=".pdf"
+                    :on-success="handleUploadSuccess"
+                  >
+                    <el-button slot="trigger" type="primary">選擇檔案</el-button>
+                    <div slot="tip" class="el-upload__tip">只能上傳pdf文件</div>
+                  </el-upload>
+
                 </el-form-item>
               </el-col>
             </el-row>
@@ -340,6 +357,7 @@ import {
 } from "@/utils/permission";
 import { mapGetters } from "vuex";
 import { GenDatetime } from "@/utils";
+import { getToken } from '@/utils/auth'
 
 export default {
   name: "u_ticket",
@@ -388,10 +406,18 @@ export default {
         "group": "部門",
         "role": "角色",
       },
+      fileList: [], // Added for file upload
     };
   },
   computed: {
     ...mapGetters(["username", "user_id"]),
+    uploadHeaders() {
+      const token = this.getAuthToken();
+      console.log("Retrieved token:", token); // Log the token
+      return {
+        Authorization: `core ${token || ''}`, // Provide a fallback value
+      };
+    },
   },
   created() {
     const id = this.$route.params && this.$route.params.id;
@@ -535,6 +561,40 @@ export default {
               console.log(e)
             });
     },
-  },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    getAuthToken() {
+      return getToken(); // This is assuming you have a method to get the token
+    },
+    handleUploadSuccess(response, file, fileList) {
+      if (response.code === 20000 && response.results) {
+        const serverFileName = response.results.filename;
+        let fileUrl = response.results.file;
+        
+        // Replace localhost or 127.0.0.1 with the server's IP
+        const serverIP = 'websystem.life'; // Your server's actual IP
+        const localhost = '0.0.0.0'
+        var ipRegex = new RegExp('\b' + localhost + '\b');
+        var newUrl = originalUrl.replace(ipRegex, serverIP);
+
+        // Extract original file name
+        const originalFileName = file.name || serverFileName.split('-')[0] + '.pdf';
+
+        this.$store.dispatch('fileUpload/setUploadedFileInfo', {
+          name: originalFileName,
+          url: newUrl
+        });
+
+        this.$message.success('File uploaded successfully');
+      } else {
+        this.$message.error('File upload failed');
+        console.error('Upload failed:', response);
+      }
+    },
+  }
 };
 </script>

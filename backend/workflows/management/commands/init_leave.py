@@ -80,6 +80,9 @@ class Command(BaseCommand):
                                         field_choice='{"1":"同意 (轉交下一步)", "2":"不同意 (駁回)"}', workflow=lab_wf)
         c5 = CustomField.objects.create(field_name="進行測試", order_id=80, field_type=9, field_key="ops_radio",
                                         field_choice='{"1":"已執行", "2":"未執行"}', workflow=lab_wf)
+        
+        c6 = CustomField.objects.create(field_name="上傳文件", order_id=55, field_type=15, field_key="upload_file", workflow=lab_wf)
+
 
         # 建立初始和结束状态
         s1 = State.objects.create(name="開始", order_id=1, state_type=1, is_hidden=True, participant_type='none',
@@ -88,12 +91,12 @@ class Command(BaseCommand):
                                   workflow=lab_wf)
         # 建立流转状态
         s3 = State.objects.create(name="申請人-編輯中", order_id=2, participant_type='none', workflow=lab_wf)
-        s3.fields.add(c0, c1, c2, c3)
+        s3.fields.add(c0, c1, c2, c3, c6)
         s4 = State.objects.create(name="經理-審批中", order_id=3, participant_type='role', workflow=lab_wf)
-        s4.fields.add(c4)
+        s4.fields.add(c4, c6)
         s4.role_participant.add(role_lab_tl)
         s5 = State.objects.create(name="測試-執行中", order_id=4, participant_type='role', workflow=lab_wf)
-        s5.fields.add(c5)
+        s5.fields.add(c5, c6)
         s5.role_participant.add(role_fab)
         s6 = State.objects.create(name="結束", order_id=98, state_type=2, participant_type='none', workflow=lab_wf)
 
@@ -158,6 +161,8 @@ class Command(BaseCommand):
                                         field_choice='{"1":"同意 (轉交下一步)", "2":"不同意 (駁回)"}', workflow=fab_wf)
         c6 = CustomField.objects.create(field_name="進行測試", order_id=80, field_type=9, field_key="ops_radio",
                                         field_choice='{"1":"已執行", "2":"未執行"}', workflow=fab_wf)
+        c7 = CustomField.objects.create(field_name="上傳文件", order_id=55, field_type=15, field_key="upload_file", workflow=fab_wf)
+        
 
         # 建立初始和结束状态
         s1 = State.objects.create(name="開始", order_id=1, state_type=1, is_hidden=True, participant_type='none',
@@ -166,12 +171,12 @@ class Command(BaseCommand):
                                   workflow=fab_wf)
         # 建立流转状态
         s3 = State.objects.create(name="申請人-編輯中", order_id=2, participant_type='none', workflow=fab_wf)
-        s3.fields.add(c1, c2, c3, c4)
+        s3.fields.add(c1, c2, c3, c4, c7)
         s4 = State.objects.create(name="經理-審批中", order_id=3, participant_type='role', workflow=fab_wf)
-        s4.fields.add(c5)
+        s4.fields.add(c5,c7)
         s4.role_participant.add(role_fab_tl)
         s5 = State.objects.create(name="測試-執行中", order_id=4, participant_type='role', workflow=fab_wf)
-        s5.fields.add(c6)
+        s5.fields.add(c6,c7)
         s5.role_participant.add(role_lab)
         s6 = State.objects.create(name="結束", order_id=98, state_type=2, participant_type='none', workflow=fab_wf)
 

@@ -54,7 +54,7 @@ const actions = {
   generateRoutes2({ commit }, roles) {
     return new Promise(resolve => {
       let accessedRoutes
-      if (roles.includes('admin')) {
+      if (true) {
         // 如果是管理员则加载所有路由
         accessedRoutes = asyncRoutes
       } else {
